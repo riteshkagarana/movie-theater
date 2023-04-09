@@ -45,7 +45,7 @@ public class Theater {
         return new Reservation(customer, showing, howManyTickets);
     }
 
-    public void printSchedule() {
+    public void printSchedule() throws JsonProcessingException {
         System.out.println(provider.currentDate());
         System.out.println("================Text Format==================================");
         schedule.forEach(s ->
@@ -57,14 +57,11 @@ public class Theater {
         
         //printing JSON Format
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        try {
-			String json = ow.writeValueAsString(schedule);
-			System.out.println(json);
+     
+		String json = ow.writeValueAsString(schedule);
+		System.out.println(json);
 			
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
         
         System.out.println("=====================END JSON Format========================");
     }
@@ -87,7 +84,12 @@ public class Theater {
     }
 
     public static void main(String[] args) {
-        Theater theater = new Theater(LocalDateProvider.singleton());
-        theater.printSchedule();
+        try {
+        	Theater theater = new Theater(LocalDateProvider.singleton());
+			theater.printSchedule();
+		} catch (JsonProcessingException e) {
+			System.out.println(" error calling printSchedule = " + e.getMessage());
+			e.printStackTrace();
+		}
     }
 }

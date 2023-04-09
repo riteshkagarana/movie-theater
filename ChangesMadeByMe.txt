@@ -1,0 +1,10 @@
+I made following changes
+
+1. added private constructor in LocalDateProvider singleton class
+2. added two new requirements in Movie class inside getDiscount method 
+	•Any movies showing starting between 11AM ~ 4pm, you'll get 25% discount	
+	•Any movies showing on 7th, you'll get 1$ discount
+3. Modified Theater class to print movie schedule in JSON format
+4. Added missing test cases and new test cases inside MovieTests
+5. added Jackson dependency inside pom.xml
+
